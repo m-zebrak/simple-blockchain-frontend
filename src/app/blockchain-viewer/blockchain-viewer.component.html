@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Blocks on chain</h1>
+  <p>Each card represents a block on the chain. Click on a block to see the transactions stored inside.</p>
+
+  <app-block-view
+    *ngFor="let block of blocks"
+    [block]="block"
+    (click)="showTransactions(block)"
+  ></app-block-view>
+</div>
+
+<br><br>
+
+<div class="container" *ngIf="selected != undefined">
+  <h2 aria-describedby="hash" style="display: inline-block">Transactions inside block</h2>
+  <h5 id="hash" class=" text-muted" style="display: inline-block; margin-left: 1rem">
+    [{{selected.hash}}]
+  </h5>
+
+  <app-transactions-table
+    [transactions]="selected.transactions"
+  ></app-transactions-table>
+</div>

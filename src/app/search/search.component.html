@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Search</h1>
+  <p>Input hash of the transaction or block and see it</p>
+
+  <br>
+
+  <div class="form-group">
+    <label for="hash">Hash</label>
+    <input type="string" class="form-control" id="hash" aria-describedby="hashHelp" [(ngModel)]="hash">
+    <small id="hashHelp" class="form-text text-muted">
+      Enter hash number!
+    </small>
+    <br>
+    <button type="submit" class="btn btn-outline-dark" (click)="find(hash)">Submit Form</button>
+  </div>
+</div>
+
+<div class="container">
+  <br>
+  <h4 *ngIf="!found">No block were found</h4>
+  <br>
+  <app-block-view (click)='clicked()' [show]="show" *ngIf="isBlock(found)" [block]="found"></app-block-view>
+  <app-transactions-table *ngIf="isTransaction(found)" [transactions]="[found]"></app-transactions-table>
+</div>
+
